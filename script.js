@@ -4,8 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectFrame = document.getElementById('project-frame');
     const welcomeMessage = document.getElementById('welcome-message');
     const searchInput = document.getElementById('search-input');
+    
+    // Mobil menü için yeni elementler
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const nav = document.getElementById('project-nav');
+    const overlay = document.getElementById('overlay');
 
-    // Tüm projeleri saklamak için bir dizi
     let allProjects = [];
 
     /**
@@ -13,28 +17,22 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {Array} projectsToRender - Ekrana çizilecek projelerin dizisi.
      */
     function renderProjects(projectsToRender) {
-        // Her render öncesi listeyi temizle
         projectList.innerHTML = '';
-
         if (projectsToRender.length === 0) {
             projectList.innerHTML = '<li><span class="text-gray-500 px-3 py-2">Sonuç bulunamadı.</span></li>';
             return;
         }
-
         projectsToRender.forEach(project => {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.href = '#';
             link.dataset.src = project.yol;
             link.className = 'project-link flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-700 transition-colors duration-200';
-            
             const icon = document.createElement('i');
             project.ikon.split(' ').forEach(cls => icon.classList.add(cls));
             icon.classList.add('fa-fw', 'text-gray-400');
-            
             const span = document.createElement('span');
             span.textContent = project.adi;
-            
             link.appendChild(icon);
             link.appendChild(span);
             listItem.appendChild(link);
@@ -48,16 +46,21 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadProjects() {
         try {
             const response = await fetch('projeler.json');
-            if (!response.ok) {
-                throw new Error(`HTTP hatası! Durum: ${response.status}`);
-            }
-            allProjects = await response.json(); // Projeleri global değişkene ata
-            renderProjects(allProjects); // Tüm projelerle listeyi ilk kez çiz
-
+            if (!response.ok) throw new Error(`HTTP hatası! Durum: ${response.status}`);
+            allProjects = await response.json();
+            renderProjects(allProjects);
         } catch (error) {
             console.error("Projeler yüklenemedi:", error);
             projectList.innerHTML = '<li><span class="text-red-400 px-3 py-2">Projeler yüklenemedi.</span></li>';
         }
+    }
+
+    /**
+     * Mobil menüyü açar veya kapatır.
+     */
+    function toggleMenu() {
+        nav.classList.toggle('-translate-x-full');
+        overlay.classList.toggle('hidden');
     }
 
     // Arama kutusuna her karakter girildiğinde filtreleme yap
@@ -73,11 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
     projectList.addEventListener('click', function(e) {
         const link = e.target.closest('.project-link');
         if (!link) return;
-
         e.preventDefault();
 
         const projectSrc = link.dataset.src;
-
         if (projectSrc && projectSrc !== 'about:blank') {
             welcomeMessage.classList.add('hidden');
             projectFrame.classList.remove('hidden');
@@ -90,7 +91,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.querySelectorAll('.project-link').forEach(l => l.classList.remove('active'));
         link.classList.add('active');
+
+        // Mobil görünümde bir projeye tıklandığında menüyü kapat
+        if (window.innerWidth < 768) {
+            toggleMenu();
+        }
     });
+
+    // Mobil menü butonu ve overlay için olay dinleyicileri
+    menuToggleBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
 
     // Sayfa yüklendiğinde projeleri yükle
     loadProjects();

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.5s ease;
+    background-color: #1f2937; /* Başlangıç rengi */
+    color: white;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2rem;
+}
+
+p {
+    /* Değişiklik: Açıklama metninin rengi beyaza ayarlandı */
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+}
+
+#hex-input {
+    width: 100%;
+    padding: 15px 20px;
+    padding-right: 60px; /* Renk önizlemesi için yer aç */
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #4a5568;
+    background-color: #2d3748;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+    text-align: center;
+    font-family: monospace;
+    box-sizing: border-box;
+}
+
+#hex-input:focus {
+    border-color: #4299e1;
+}
+
+#color-preview {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: background-color 0.3s ease;
+}
+
+.message {
+    margin-top: 1rem;
+    height: 20px;
+    color: #fca5a5;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}

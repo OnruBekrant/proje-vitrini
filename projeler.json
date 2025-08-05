@@ -1,0 +1,12 @@
+[
+    {
+        "adi": "Lokal Sayaç",
+        "ikon": "fa-solid fa-stopwatch",
+        "yol": "./projeler/sayac/index.html"
+    },
+    {
+        "adi": "Renk Değiştirici",
+        "ikon": "fa-solid fa-palette",
+        "yol": "./projeler/renk-degistirici/index.html"
+    }
+]

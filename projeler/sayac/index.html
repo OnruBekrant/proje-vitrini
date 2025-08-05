@@ -1,0 +1,63 @@
+<!--<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokal Sayaç Uygulaması</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Benim Sayaçlarım</h1>
+        
+        <div class="new-counter-form">
+            <input type="text" id="new-counter-name" placeholder="Yeni sayaç adı (örn: Okunan Kitaplar)">
+            <button id="add-counter-btn">Yeni Sayaç Ekle</button>
+        </div>
+
+        <div id="counters-container">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gelişmiş Lokal Sayaç</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- İkonlar için Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Benim Sayaçlarım</h1>
+            <div class="top-menu">
+                <button id="theme-toggle-btn" title="Temayı Değiştir"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                <button id="export-btn" title="Verileri Dışa Aktar"><i class="fa-solid fa-file-export"></i> Dışa Aktar</button>
+                <label for="import-file" class="import-label" title="Verileri İçe Aktar">
+                    <i class="fa-solid fa-file-import"></i> İçe Aktar
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                </label>
+            </div>
+        </div>
+        
+        <div class="new-counter-form">
+            <input type="text" id="new-counter-name" placeholder="Yeni sayaç adı...">
+            <button id="add-counter-btn">Yeni Sayaç Ekle</button>
+        </div>
+
+        <div id="counters-container">
+            <!-- Sayaçlar buraya dinamik olarak eklenecek -->
+        </div>
+    </div>
+
+    <!-- Sürükle-Bırak Kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

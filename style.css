@@ -1,0 +1,17 @@
+/* Ana sayfa için temel stiller */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111827; /* Koyu Gri Arka Plan */
+    color: #d1d5db; /* Açık Gri Metin */
+}
+
+/* iframe'in kenarlık ve geçiş efektleri */
+#project-frame {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Aktif navigasyon linki stili */
+nav a.active {
+    background-color: #3b82f6;
+    color: white;
+}
